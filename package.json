@@ -1,0 +1,38 @@
+{
+    "name": "kintone-app-permission-migration",
+    "version": "0.1.0",
+    "description": "kintone App Permission Migration Tool",
+    "main": "./dist/main.js",
+    "bin": {
+        "kapm": "./dist/main.js"
+    },
+    "scripts": {
+        "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/main.ts",
+        "build": "tsc -p .",
+        "refresh": "rm -rf ./node_modules ./package-lock.json && npm install",
+        "package:mac": "pkg dist/main.js --targets node10-macos-x64 --output build/mac/kapm",
+        "package:win32": "pkg dist/main.js --targets node10-win32 --output build/win32/kapm.exe",
+        "package:win64": "pkg dist/main.js --targets node10-win-x64 --output build/win64/kapm.exe",
+        "package:linux": "pkg dist/main.js --targets node10-linux-x64 --output build/linux/kapm",
+        "package:all": "yarn package:mac && yarn package:win64 && yarn package:win32 && yarn package:linux"
+    },
+    "keywords": [],
+    "author": "Josh-Vo",
+    "license": "ISC",
+    "dependencies": {
+        "@kintone/kintone-js-sdk": "^0.7.5",
+        "chalk": "^3.0.0",
+        "clear": "^0.1.0",
+        "commander": "^4.1.1",
+        "figlet": "^1.2.4",
+        "path": "^0.12.7",
+        "xmlhttprequest": "^1.8.0"
+    },
+    "devDependencies": {
+        "@types/node": "^13.7.4",
+        "nodemon": "^2.0.2",
+        "pkg": "^4.4.3",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.8.2"
+    }
+}
